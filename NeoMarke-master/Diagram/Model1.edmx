@@ -42,10 +42,6 @@
             <End Role="Person1" EntitySet="PersonSet" />
             <End Role="User1" EntitySet="UserSet" />
           </AssociationSet>
-          <AssociationSet Name="UserRol" Association="Model1.UserRol">
-            <End Role="User" EntitySet="UserSet" />
-            <End Role="Rol" EntitySet="RolSet" />
-          </AssociationSet>
           <AssociationSet Name="CompanyUser" Association="Model1.CompanyUser">
             <End Role="Company" EntitySet="CompanySet" />
             <End Role="User" EntitySet="UserSet" />
@@ -66,13 +62,17 @@
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
           <EntitySet Name="CategorySet" EntityType="Model1.Category" />
-          <AssociationSet Name="ItemCategory" Association="Model1.ItemCategory">
-            <End Role="Item" EntitySet="Items" />
-            <End Role="Category" EntitySet="CategorySet" />
-          </AssociationSet>
           <AssociationSet Name="UserInventory" Association="Model1.UserInventory">
             <End Role="User" EntitySet="UserSet" />
             <End Role="Inventory" EntitySet="Inventorys" />
+          </AssociationSet>
+          <AssociationSet Name="RolUser" Association="Model1.RolUser">
+            <End Role="Rol" EntitySet="RolSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryItem" Association="Model1.CategoryItem">
+            <End Role="Category" EntitySet="CategorySet" />
+            <End Role="Item" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Form">
@@ -126,7 +126,7 @@
           <Property Name="description" Type="String" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="RolFormId" Relationship="Model1.RolRolForm" FromRole="Rol1" ToRole="RolForm" />
-          <NavigationProperty Name="id_user" Relationship="Model1.UserRol" FromRole="Rol" ToRole="User" />
+          <NavigationProperty Name="id_user" Relationship="Model1.RolUser" FromRole="Rol" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -139,10 +139,10 @@
           <Property Name="createAt" Type="String" Nullable="false" />
           <Property Name="deleteAt" Type="String" Nullable="false" />
           <Property Name="status" Type="String" Nullable="false" />
-          <NavigationProperty Name="id_rol" Relationship="Model1.UserRol" FromRole="User" ToRole="Rol" />
           <NavigationProperty Name="id_company" Relationship="Model1.CompanyUser" FromRole="User" ToRole="Company" />
           <Property Name="Company_id_company" Type="Int32" Nullable="false" />
           <NavigationProperty Name="id_inventory" Relationship="Model1.UserInventory" FromRole="User" ToRole="Inventory" />
+          <NavigationProperty Name="id_rol" Relationship="Model1.RolUser" FromRole="User" ToRole="Rol" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -214,10 +214,6 @@
           <End Type="Model1.Person" Role="Person1" Multiplicity="1" />
           <End Type="Model1.User" Role="User1" Multiplicity="1" />
         </Association>
-        <Association Name="UserRol">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Rol" Role="Rol" Multiplicity="1" />
-        </Association>
         <Association Name="CompanyUser">
           <End Type="Model1.Company" Role="Company" Multiplicity="1" />
           <End Type="Model1.User" Role="User" Multiplicity="*" />
@@ -254,8 +250,7 @@
           <Property Name="updateAt" Type="String" Nullable="false" />
           <NavigationProperty Name="id_imageItem" Relationship="Model1.ItemImageItem" FromRole="Item" ToRole="ImageItem" />
           <NavigationProperty Name="id_inventory" Relationship="Model1.InventoryItem" FromRole="Item" ToRole="Inventory" />
-          <Property Name="Inventory_id_inventory" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="id_category" Relationship="Model1.ItemCategory" FromRole="Item" ToRole="Category" />
+          <NavigationProperty Name="id_Category" Relationship="Model1.CategoryItem" FromRole="Item" ToRole="Category" />
         </EntityType>
         <EntityType Name="ImageItem">
           <Key>
@@ -286,7 +281,6 @@
           <NavigationProperty Name="id_item" Relationship="Model1.InventoryItem" FromRole="Inventory" ToRole="Item" />
           <Property Name="zone_item" Type="String" Nullable="false" />
           <NavigationProperty Name="id_user" Relationship="Model1.UserInventory" FromRole="Inventory" ToRole="User" />
-          <Property Name="User_id_user" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="InventoryItem">
           <End Type="Model1.Inventory" Role="Inventory" Multiplicity="1" />
@@ -307,12 +301,8 @@
           <Property Name="id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" />
           <Property Name="description" Type="String" Nullable="false" />
-          <NavigationProperty Name="id_item" Relationship="Model1.ItemCategory" FromRole="Category" ToRole="Item" />
+          <NavigationProperty Name="Id_Item" Relationship="Model1.CategoryItem" FromRole="Category" ToRole="Item" />
         </EntityType>
-        <Association Name="ItemCategory">
-          <End Type="Model1.Item" Role="Item" Multiplicity="1" />
-          <End Type="Model1.Category" Role="Category" Multiplicity="1" />
-        </Association>
         <Association Name="UserInventory">
           <End Type="Model1.User" Role="User" Multiplicity="1" />
           <End Type="Model1.Inventory" Role="Inventory" Multiplicity="*" />
@@ -322,6 +312,22 @@
             </Principal>
             <Dependent Role="Inventory">
               <PropertyRef Name="User_id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RolUser">
+          <End Type="Model1.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="Model1.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="CategoryItem">
+          <End Type="Model1.Category" Role="Category" Multiplicity="1" />
+          <End Type="Model1.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id_category" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="Category_id_category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

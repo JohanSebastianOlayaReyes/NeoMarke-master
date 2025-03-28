@@ -8,7 +8,7 @@ namespace Entity.DTOs
 {
     class CompanyDTO
     {
-
+        public int Id { get; set; }
         public string createAt { get; set; }
         public string deleteAt { get; set; }
         public string update_date { get; set; }
