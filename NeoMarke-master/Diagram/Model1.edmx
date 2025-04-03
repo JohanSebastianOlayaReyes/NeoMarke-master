@@ -51,11 +51,6 @@
             <End Role="Sede" EntitySet="SedeSet" />
           </AssociationSet>
           <EntitySet Name="Items" EntityType="Model1.Item" />
-          <EntitySet Name="ImageItemSet" EntityType="Model1.ImageItem" />
-          <AssociationSet Name="ItemImageItem" Association="Model1.ItemImageItem">
-            <End Role="Item" EntitySet="Items" />
-            <End Role="ImageItem" EntitySet="ImageItemSet" />
-          </AssociationSet>
           <EntitySet Name="Inventorys" EntityType="Model1.Inventory" />
           <AssociationSet Name="InventoryItem" Association="Model1.InventoryItem">
             <End Role="Inventory" EntitySet="Inventorys" />
@@ -245,25 +240,9 @@
           <Property Name="createAt" Type="String" Nullable="false" />
           <Property Name="deleteAt" Type="String" Nullable="false" />
           <Property Name="updateAt" Type="String" Nullable="false" />
-          <NavigationProperty Name="id_imageItem" Relationship="Model1.ItemImageItem" FromRole="Item" ToRole="ImageItem" />
           <NavigationProperty Name="id_inventory" Relationship="Model1.InventoryItem" FromRole="Item" ToRole="Inventory" />
           <NavigationProperty Name="id_Category" Relationship="Model1.CategoryItem" FromRole="Item" ToRole="Category" />
         </EntityType>
-        <EntityType Name="ImageItem">
-          <Key>
-            <PropertyRef Name="id_imageItem" />
-          </Key>
-          <Property Name="id_imageItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="urlImage" Type="String" Nullable="false" />
-          <Property Name="createAt" Type="String" Nullable="false" />
-          <Property Name="deleteAt" Type="String" Nullable="false" />
-          <Property Name="updateAt" Type="String" Nullable="false" />
-          <NavigationProperty Name="id_item" Relationship="Model1.ItemImageItem" FromRole="ImageItem" ToRole="Item" />
-        </EntityType>
-        <Association Name="ItemImageItem">
-          <End Type="Model1.Item" Role="Item" Multiplicity="1" />
-          <End Type="Model1.ImageItem" Role="ImageItem" Multiplicity="1" />
-        </Association>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="id_inventory" />
