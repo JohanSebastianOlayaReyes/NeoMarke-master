@@ -1,106 +1,25 @@
-﻿using Entity.Context;
+﻿using Entity.Contexts;
 using Entity.Model;
-using Microsoft.EntityFrameworkcore;
-using Microsoft.Extension.Logging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Data
 {
-    public async Task<bool> DeleteAsync(int id)
-    {
-        try
-        {
-            var Company = await _context.Set<company>().FindAsync(id);
-            if (Company == null)
-                return false;
-
-            _context.Set<CompanyData>().Remove(company);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error al eliminar:{ex.Message}");
-            return false;
-        }
-    }
-
-    public async Task<bool> UpdateAAsync(Company company)
-{
-    try
-    {
-        _context.Set<Company>().Update(company);
-        await _context.SaveChangesAsync();
-        return true;
-    }
-    catch (Exception ex)
-    {
-        _logger.LogError($"Error al actualizar: {ex.Message}");
-        return false;
-    }
-}
-
-
-public async Task<Company> CreateAsync(Company company)
-{
-    try
-    {
-        await _context.Set<Company>.AddAsync(company);
-        await _context.SaveChsngesAsync();
-        return company;
-    }
-    catch (Exception ex)
-    {
-        _logger.LogError($"Error al crear: {ex.Message}");
-        throw;
-    }
-}
-
-
-public async Task<IEnumerable<company>> GetAllAsync()
-{
-    return await _context.Set<company>().ToListAsync();
-}
-
-public async Task<cCmpany?> GetByIdAsync(int id)
-{
-    try
-    {
-        return await _cotext.Set<Company>().FindAsync(id);
-    }
-    catch (Exception ex)
-    {
-        _logger.LogError(ex, "Error al obtener info con id", id);
-        throw;
-    }
-}
-
-
     public class CompanyData
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger _logger;
+        private readonly ILogger<CompanyData> _logger;
 
         public CompanyData(ApplicationDbContext context, ILogger<CompanyData> logger)
         {
             _context = context;
-            _logger = (ILogger?)logger;
+            _logger = logger;
         }
 
-        public async Task<bool> UpdateAAsync(Company company)
-        {
-            try
-            {
-                _context.Set<Company>().Update(company);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error al actualizar: {ex.Message}");
-                return false;
-            }
-        }
-
+        // Crear una nueva Company
         public async Task<Company> CreateAsync(Company company)
         {
             try
@@ -111,16 +30,18 @@ public async Task<cCmpany?> GetByIdAsync(int id)
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error al crear: {ex.Message}");
+                _logger.LogError($"Error al crear la Company: {ex.Message}");
                 throw;
             }
         }
 
+        // Obtener todas las Companies
         public async Task<IEnumerable<Company>> GetAllAsync()
         {
             return await _context.Set<Company>().ToListAsync();
         }
 
+        // Obtener una Company por ID
         public async Task<Company?> GetByIdAsync(int id)
         {
             try
@@ -129,11 +50,28 @@ public async Task<cCmpany?> GetByIdAsync(int id)
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener info con id", id);
+                _logger.LogError($"Error al obtener la Company con ID {id}: {ex.Message}");
                 throw;
             }
         }
 
+        // Actualizar una Company
+        public async Task<bool> UpdateAsync(Company company)
+        {
+            try
+            {
+                _context.Set<Company>().Update(company);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error al actualizar la Company: {ex.Message}");
+                return false;
+            }
+        }
+
+        // Eliminar una Company por ID
         public async Task<bool> DeleteAsync(int id)
         {
             try
@@ -148,10 +86,9 @@ public async Task<cCmpany?> GetByIdAsync(int id)
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error al eliminar: {ex.Message}");
+                _logger.LogError($"Error al eliminar la Company: {ex.Message}");
                 return false;
             }
         }
     }
 }
-

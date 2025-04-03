@@ -19,7 +19,7 @@ namespace Data
             _logger = logger;
         }
 
-        // Crear un nuevo rol-formulario
+        // Crear un nuevo RolForm
         public async Task<RolForm> CreateAsync(RolForm rolForm)
         {
             try
@@ -35,13 +35,13 @@ namespace Data
             }
         }
 
-        // Obtener todos los rol-formulario
+        // Obtener todos los RolForms
         public async Task<IEnumerable<RolForm>> GetAllAsync()
         {
             return await _context.Set<RolForm>().ToListAsync();
         }
 
-        // Obtener un rol-formulario por ID
+        // Obtener un RolForm por ID
         public async Task<RolForm?> GetByIdAsync(int id)
         {
             try
@@ -55,7 +55,7 @@ namespace Data
             }
         }
 
-        // Actualizar un rol-formulario
+        // Actualizar un RolForm
         public async Task<bool> UpdateAsync(RolForm rolForm)
         {
             try
@@ -71,7 +71,7 @@ namespace Data
             }
         }
 
-        // Eliminar un rol-formulario por ID
+        // Eliminar un RolForm por ID
         public async Task<bool> DeleteAsync(int id)
         {
             try
