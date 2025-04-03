@@ -137,10 +137,9 @@
           <Property Name="username" Type="String" Nullable="false" />
           <Property Name="password" Type="String" Nullable="false" />
           <Property Name="createAt" Type="String" Nullable="false" />
-          <Property Name="deleteAt" Type="String" Nullable="false" />
           <Property Name="status" Type="String" Nullable="false" />
           <NavigationProperty Name="id_company" Relationship="Model1.CompanyUser" FromRole="User" ToRole="Company" />
-          <Property Name="Company_id_company" Type="Int32" Nullable="false" />
+          <Property Name="company_id_company" Type="Int32" Nullable="false" />
           <NavigationProperty Name="id_inventory" Relationship="Model1.UserInventory" FromRole="User" ToRole="Inventory" />
           <NavigationProperty Name="id_rol" Relationship="Model1.RolUser" FromRole="User" ToRole="Rol" />
         </EntityType>
@@ -220,7 +219,7 @@
               <PropertyRef Name="id_company" />
             </Principal>
             <Dependent Role="User">
-              <PropertyRef Name="Company_id_company" />
+              <PropertyRef Name="company_id_company" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

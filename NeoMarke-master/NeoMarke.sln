@@ -28,11 +28,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{187C636E-7855-4548-B689-1F5DC1C970B3}"
 	ProjectSection(SolutionItems) = preProject
+		category.cs = category.cs
+		Company.cs = Company.cs
 		Form.cs = Form.cs
 		FormModule.cs = FormModule.cs
+		Inventory.cs = Inventory.cs
+		Item.cs = Item.cs
+		Module.cs = Module.cs
 		Person.cs = Person.cs
 		Rol.cs = Rol.cs
 		RolForm.cs = RolForm.cs
+		sede.cs = sede.cs
 		TypeIdentification.cs = TypeIdentification.cs
 		User.cs = User.cs
 	EndProjectSection

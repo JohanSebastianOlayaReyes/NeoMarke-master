@@ -7,9 +7,10 @@ using System.Threading.Tasks
 
     namespace Entity.Model
 {
-	public class RolForm
+	public class Category
 	{
 		public int Id { get; set; }
-		public string Permission { get; set; }
-    }
+		public string Name { get; set; } string.Empty;
+        public string Description { get; set; }
+	}
 }
