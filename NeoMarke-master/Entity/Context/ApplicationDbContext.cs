@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using System.Data;
@@ -17,6 +18,7 @@ namespace Entity.Contexts
         ///Configuracion de la aplicacion
         ///</summary>
         protected readonly IConfiguration _configuration;
+        private IEnumerable<object> awair;
 
         ///<summary>
         ///Constructor del contexto de la base de datos
