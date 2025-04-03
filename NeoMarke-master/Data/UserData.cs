@@ -20,7 +20,7 @@ namespace Data
         }
 
         // Crear un nuevo usuario
-        public async Task<User> CreateAsync(User user)
+        public async Task<User?> CreateAsync(User user)
         {
             try
             {

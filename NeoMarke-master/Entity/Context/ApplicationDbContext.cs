@@ -1,33 +1,30 @@
 ﻿using Dapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Entity.Contexts
 {
-    ///<summary>
-    /// Representa el contexto de la base de datos de la aplicación, proporcionando configuraciones y métodos 
+    /// <summary>
+    /// Representa el contexto de la base de datos de la aplicación, proporcionando configuraciones y métodos
     /// para la gestión de entidades y consultas personalizadas con Dapper.
-    ///</summary>
+    /// </summary>
     public class ApplicationDbContext : DbContext
     {
-        ///<summary>
+        /// <summary>
         /// Configuración de la aplicación.
-        ///</summary>
+        /// </summary>
         protected readonly IConfiguration _configuration;
 
-        ///<summary>
+        /// <summary>
         /// Constructor del contexto de la base de datos.
-        ///</summary>
-        ///<param name="options">Opciones de configuración para el contexto de base de datos.</param>
-        ///<param name="configuration">Instancia de IConfiguration para acceder a la configuración de la aplicación.</param>
+        /// </summary>
+        /// <param name="options">Opciones de configuración para el contexto de base de datos.</param>
+        /// <param name="configuration">Instancia de IConfiguration para acceder a la configuración de la aplicación.</param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration)
-            : base(options)
+        : base(options)
         {
             _configuration = configuration;
         }
@@ -40,6 +37,8 @@ namespace Entity.Contexts
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(modelBuilder);
         }
 
         /// <summary>
@@ -49,7 +48,7 @@ namespace Entity.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging();
-            // Otras configuraciones adicionales pueden ir aquí.
+            // Otras configuraciones adicionales pueden ir aquí
         }
 
         /// <summary>
@@ -74,6 +73,9 @@ namespace Entity.Contexts
         /// <summary>
         /// Guarda los cambios en la base de datos de manera asíncrona, asegurando la auditoría antes de la persistencia.
         /// </summary>
+        /// <param name="acceptAllChangesOnSuccess">Indica si se deben aceptar todos los cambios en caso de éxito.</param>
+        /// <param name="cancellationToken">Token de cancelación para abortar la operación.</param>
+        /// <returns>Número de filas afectadas de forma asíncrona.</returns>
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             EnsureAudit();
@@ -83,6 +85,12 @@ namespace Entity.Contexts
         /// <summary>
         /// Ejecuta una consulta SQL utilizando Dapper y devuelve una colección de resultados de tipo genérico.
         /// </summary>
+        /// <typeparam name="T">Tipo de los datos de retorno.</typeparam>
+        /// <param name="text">Consulta SQL a ejecutar.</param>
+        /// <param name="parameters">Parámetros opcionales de la consulta.</param>
+        /// <param name="timeout">Tiempo de espera opcional para la consulta.</param>
+        /// <param name="type">Tipo opcional de comando SQL.</param>
+        /// <returns>Una colección de objetos del tipo especificado.</returns>
         public async Task<IEnumerable<T>> QueryAsync<T>(string text, object parameters = null, int? timeout = null, CommandType? type = null)
         {
             using var command = new DapperEFCoreCommand(this, text, parameters, timeout, type, CancellationToken.None);
@@ -93,6 +101,12 @@ namespace Entity.Contexts
         /// <summary>
         /// Ejecuta una consulta SQL utilizando Dapper y devuelve un solo resultado o el valor predeterminado si no hay resultados.
         /// </summary>
+        /// <typeparam name="T">Tipo de los datos de retorno.</typeparam>
+        /// <param name="text">Consulta SQL a ejecutar.</param>
+        /// <param name="parameters">Parámetros opcionales de la consulta.</param>
+        /// <param name="timeout">Tiempo de espera opcional para la consulta.</param>
+        /// <param name="type">Tipo opcional de comando SQL.</param>
+        /// <returns>Un objeto del tipo especificado o su valor predeterminado.</returns>
         public async Task<T> QueryFirstOrDefaultAsync<T>(string text, object parameters = null, int? timeout = null, CommandType? type = null)
         {
             using var command = new DapperEFCoreCommand(this, text, parameters, timeout, type, CancellationToken.None);
@@ -113,18 +127,42 @@ namespace Entity.Contexts
         /// </summary>
         public readonly struct DapperEFCoreCommand : IDisposable
         {
-            public CommandDefinition Definition { get; }
-
-            public DapperEFCoreCommand(ApplicationDbContext context, string text, object parameters = null, int? timeout = null, CommandType? type = null, CancellationToken ct = default)
+            /// <summary>
+            /// Constructor del comando Dapper.
+            /// </summary>
+            /// <param name="context">Contexto de la base de datos.</param>
+            /// <param name="text">Consulta SQL.</param>
+            /// <param name="parameters">Parámetros opcionales.</param>
+            /// <param name="timeout">Tiempo de espera opcional.</param>
+            /// <param name="type">Tipo de comando SQL opcional.</param>
+            /// <param name="ct">Token de cancelación.</param>
+            public DapperEFCoreCommand(DbContext context, string text, object parameters, int? timeout, CommandType? type, CancellationToken ct)
             {
-                var transaction = context.Database.CurrentTransaction;
+                var transaction = context.Database.CurrentTransaction?.GetDbTransaction();
                 var commandType = type ?? CommandType.Text;
                 var commandTimeout = timeout ?? context.Database.GetCommandTimeout() ?? 30;
 
-                Definition = new CommandDefinition(text, parameters, (IDbTransaction?)transaction, commandTimeout, commandType, cancellationToken: ct);
+                Definition = new CommandDefinition(
+                    text,
+                    parameters,
+                    transaction,
+                    commandTimeout,
+                    commandType,
+                    cancellationToken: ct
+                );
             }
 
-            public void Dispose() { }
+            /// <summary>
+            /// Define los parámetros del comando SQL.
+            /// </summary>
+            public CommandDefinition Definition { get; }
+
+            /// <summary>
+            /// Método para liberar los recursos.
+            /// </summary>
+            public void Dispose()
+            {
+            }
         }
     }
 }
