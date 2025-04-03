@@ -1,6 +1,29 @@
-﻿using System;
-using System.Security.Principal;
+﻿using Entity.Context;
+using Entity.Model;
+using Microsoft.EntityFrameworkcore;
+using Microsoft.Extension.Logging;
 
+namespace Data
+{
+
+    public async Task<bool> DeleteAsync(int id)
+{
+    try
+    {
+        var form = await _context.Set<Form>().FindAsync(id);
+        if (form == null)
+            return false;
+
+        _context.Set<Form>().Remove(form);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error al eliminar:{ex.Message}");
+        return false;
+    }
+}
 
 public async Task<bool> UpdateAAsync(Form form)
 {
@@ -52,17 +75,11 @@ public async Task<Form?> GetByIdAsync(int id)
     }
 }
 
-using Entity.Context;
-using Entity.Model;
-using Microsoft.EntityFrameworkcore;
-using Microsoft.Extension.Logging;
 
-namespace Data
-{
->
     class FormData
     {
         private readonly ApplicationDbContext_context;
+private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
 
 
@@ -74,21 +91,3 @@ namespace Data
     }
 }
 
-public async Task<bool> DeleteAsync(int id)
-{
-    try
-    {
-        var form = await _context.Set<form>().FindAsync(id);
-        if (form == null)
-            return false;
-
-        _context.Set<Form>().Remove(form);
-        await _context.SaveChangesAsync();
-        return true;
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error al eliminar:{ex.Message}");
-        return false;
-    }
-}

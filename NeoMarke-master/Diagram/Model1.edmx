@@ -149,16 +149,14 @@
             <PropertyRef Name="id_person" />
           </Key>
           <Property Name="id_person" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" />
           <Property Name="first_name" Type="String" Nullable="false" />
-          <Property Name="second_name" Type="String" Nullable="false" />
-          <Property Name="first_last_name" Type="String" Nullable="false" />
-          <Property Name="second_last_name" Type="String" Nullable="false" />
-          <Property Name="phone_number" Type="Int16" Nullable="false" />
+          <Property Name="last_name" Type="String" Nullable="false" />
+          <Property Name="phone" Nullable="false" Type="Int16" />
           <Property Name="email" Type="String" Nullable="false" />
           <Property Name="type_identification" Type="String" Nullable="false" />
           <Property Name="number_identification" Type="Int16" Nullable="false" />
           <NavigationProperty Name="id_user" Relationship="Model1.PersonUser1" FromRole="Person1" ToRole="User1" />
+          <Property Name="status" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Sede">
           <Key>

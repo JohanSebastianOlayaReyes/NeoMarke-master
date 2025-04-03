@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24ad8c9fba53449687950ce1fb02ae9d" Name="Diagram1" ZoomLevel="58" >
+      <Diagram DiagramId="24ad8c9fba53449687950ce1fb02ae9d" Name="Diagram1" ZoomLevel="128" >
         <EntityTypeShape EntityType="Model1.Form" Width="1.5" PointX="13.25" PointY="5.75" />
         <EntityTypeShape EntityType="Model1.FormModule" Width="1.5" PointX="15.75" PointY="7.375" />
         <EntityTypeShape EntityType="Model1.Module" Width="1.5" PointX="16.375" PointY="2.875" />
         <EntityTypeShape EntityType="Model1.RolForm" Width="1.5" PointX="11.5" PointY="3" />
-        <EntityTypeShape EntityType="Model1.Rol" Width="1.5" PointX="8.125" PointY="2.875" />
-        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="5" PointY="5.5" />
+        <EntityTypeShape EntityType="Model1.Rol" Width="1.5" PointX="8.125" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.User" Width="2" PointX="5" PointY="5.5" />
         <EntityTypeShape EntityType="Model1.Person" Width="2.25" PointX="2.625" PointY="0.875" />
         <EntityTypeShape EntityType="Model1.Sede" Width="1.5" PointX="6.75" PointY="10.625" />
         <EntityTypeShape EntityType="Model1.Company" Width="1.5" PointX="3.125" PointY="11.25" />

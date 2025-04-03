@@ -1,11 +1,17 @@
-﻿using System.Security.Principal;
+﻿using Entity.Context;
+using Entity.Model;
+using Microsoft.EntityFrameworkcore;
+using Microsoft.Extension.Logging;
 
-///<summary>
-///Actualiza un rol existente en la base de datos.
-/// </summary>
-/// <param name="rol">objeto con la informacion actualizada</param>
-/// <returns>True si la operacion fue exitosa, False en caso contrario</returns>
-public async Task<bool> UpdateAAsync(Rol rol)
+namespace Data
+{
+
+    ///<summary>
+    ///Actualiza un rol existente en la base de datos.
+    /// </summary>
+    /// <param name="rol">objeto con la informacion actualizada</param>
+    /// <returns>True si la operacion fue exitosa, False en caso contrario</returns>
+    public async Task<bool> UpdateAAsync(Rol rol)
 {
     try
     {
@@ -62,13 +68,7 @@ public async Task<Rol?> GetByIdAsync(int id)
     }
 }
 
-using Entity.Context;
-using Entity.Model;
-using Microsoft.EntityFrameworkcore;
-using Microsoft.Extension.Logging;
 
-namespace Data
-{
     ///<summary>
     ///repositorio encargad de la gestion de la entidad Rol en lka base de datos 
     ///</summary>
@@ -89,26 +89,3 @@ namespace Data
     }
 }
 
-///<summary>
-///elimina un rol de la base de datos
-/// </summary>
-/// <param name="id">identificador unico del rol a eliminar</param>
-/// <returns>True si la eliminacion fue exitosa, false caso contrario</returns>
-public async Task<bool> DeleteAsync(int id)
-{
-    try
-    {
-        var rol = await _context.Set<Rol>().FindAsync(id);
-        if (rol == null)
-            return false;
-
-        _context.Set<Rol>().Remove(rol);
-        await _context.SaveChangesAsync();
-        return true;
-    }
-catch  (Exception ex)
-    {
-        Console.WriteLine($"Error al eliminr el rol:{ex.Message}");
-        return false;
-    }
-}
