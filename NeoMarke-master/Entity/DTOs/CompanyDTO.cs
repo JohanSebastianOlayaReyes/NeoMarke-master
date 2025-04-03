@@ -8,16 +8,12 @@ namespace Entity.DTOs
 {
     class CompanyDTO
     {
-        public int Id { get; set; }
-        public string createAt { get; set; }
-        public string deleteAt { get; set; }
-        public string update_date { get; set; }
-        public string description { get; set; }
-        public string name_company { get; set; }
-        public int phone_company { get; set; }
-        public string locality { get; set; }
-        public string email_company { get; set; }
-        public string nit_company { get; set; }
-        public string status { get; set; }
+        public string description { get; set; } = string.Empty;
+        public string name_company { get; set; } = string.Empty;
+        public int phone_company { get; set; } = 0;
+        public string locality { get; set; } = string.Empty;
+        public string email_company { get; set; } = string.Empty;
+        public string nit_company { get; set; } = string.Empty;
+        public bool status { get; set; }
     }
 }

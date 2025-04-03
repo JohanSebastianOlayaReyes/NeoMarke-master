@@ -8,11 +8,8 @@ namespace Entity.DTOs
 {
     class FormDTO
     {
-        public int id { get; set; }
-        public string description { get; set; }
-        public string status { get; set; }
-        public string createdAt { get; set; }
-        public string update_date { get; set; }
-        public string deleteAt { get; set; }
+        public string description { get; set; } = string.Empty;
+        public bool status { get; set; }
+
     }
 }

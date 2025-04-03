@@ -8,7 +8,6 @@ namespace Entity.DTOs
 {
     class rolFormDTO
     {
-        public int id { get; set; }
         public string permission { get; set; }
     }
 }

@@ -8,11 +8,8 @@ namespace Entity.DTOs
 {
     class ItemDTO
     {
-        public int Id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string createdAt { get; set; }
-        public string updatedAt { get; set; }
-        public string deletedAt { get; set; }
+        public string name { get; set; } = string.Empty;
+        public string description { get; set; } = string.Empty;
+
     }
 }

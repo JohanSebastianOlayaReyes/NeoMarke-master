@@ -8,15 +8,12 @@ namespace Entity.DTOs
 {
     class SedeDTO
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string code_sede { get; set; }
-        public string address { get; set; }
+        public string name { get; set; } = string.Empty;
+        public string code_sede { get; set; } = string.Empty;
+        public string address { get; set; } = string.Empty;
         public int phone_sede { get; set; }
-        public string email_sede { get; set; }
-        public string status { get; set; }
-        public string createAt { get; set; }
-        public string deleteAt { get; set; }
-        public string update_date { get; set; }
+        public string email_sede { get; set; } = string.Empty;
+        public bool status { get; set; }
+
     }
 }
