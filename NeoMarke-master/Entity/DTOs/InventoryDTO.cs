@@ -8,11 +8,11 @@ namespace Entity.DTOs
 {
     class InventoryDTO
     {
-        public bool statusPrevious { get; set; }
-        public bool statusNew { get; set; }
-        public string observations { get; set; } = string.Empty;
+        public bool StatusPrevious { get; set; }
+        public bool StatusNew { get; set; }
+        public string Observations { get; set; } = string.Empty;
 
-        public string zone_item {  get; set; }
+        public string ZoneItem {  get; set; }
 
     }
 }

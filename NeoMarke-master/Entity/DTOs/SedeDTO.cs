@@ -8,12 +8,12 @@ namespace Entity.DTOs
 {
     class SedeDTO
     {
-        public string name { get; set; } = string.Empty;
-        public string code_sede { get; set; } = string.Empty;
-        public string address { get; set; } = string.Empty;
-        public int phone_sede { get; set; }
-        public string email_sede { get; set; } = string.Empty;
-        public bool status { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string CodeSede { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public int PhoneSede { get; set; }
+        public string EmailSede { get; set; } = string.Empty;
+        public bool Status { get; set; }
 
     }
 }

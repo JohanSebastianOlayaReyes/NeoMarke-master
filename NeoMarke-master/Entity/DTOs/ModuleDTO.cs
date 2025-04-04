@@ -8,7 +8,7 @@ namespace Entity.DTOs
 {
     class ModuleDTO
     {
-        public bool active { get; set; }
+        public bool Active { get; set; }
 
     }
 }

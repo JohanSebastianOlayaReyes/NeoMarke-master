@@ -8,11 +8,11 @@ namespace Entity.DTOs
 {
     class PersonDTO
     {
-        public string first_name { get; set; } = string.Empty;
-        public string last_name { get; set; } = string.Empty;
-        public int phone_number { get; set; }
-        public string email { get; set; } = string.Empty;
-        public string type_indification { get; set; }
-        public int number_indification { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public int PhoneNumber { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string TypeIndification { get; set; }
+        public int NumberIndification { get; set; }
     }
 }

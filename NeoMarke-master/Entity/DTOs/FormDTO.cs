@@ -8,8 +8,8 @@ namespace Entity.DTOs
 {
     class FormDTO
     {
-        public string description { get; set; } = string.Empty;
-        public bool status { get; set; }
+        public string Description { get; set; } = string.Empty;
+        public bool Status { get; set; }
 
     }
 }

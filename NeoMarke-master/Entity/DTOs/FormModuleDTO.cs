@@ -8,6 +8,6 @@ namespace Entity.DTOs
 {
     class FormModuleDTO
     {
-        public string status_procedure { get; set; }
+        public string StatusProcedure { get; set; }
     }
 }

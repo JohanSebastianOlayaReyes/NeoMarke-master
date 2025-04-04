@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entity.DTOs
 {
-    class rolDTO
+    class RolDTO
     {
-        public string name_rol { get; set; } = string.Empty;
-        public string description { get; set; }
-        public bool status { get; set; }
+        public string NameRol { get; set; } = string.Empty;
+        public string Description { get; set; }
+        public bool Status { get; set; }
     }
 }

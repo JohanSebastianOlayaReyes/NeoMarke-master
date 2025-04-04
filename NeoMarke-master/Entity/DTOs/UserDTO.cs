@@ -8,8 +8,8 @@ namespace Entity.DTOs
 {
     class UserDTO
     {
-        public string username { get; set; } = string.Empty;
-        public string password { get; set; } = string.Empty;
-        public bool status { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public bool Status { get; set; }
     }
 }
