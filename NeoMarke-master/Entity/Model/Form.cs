@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 		public string Description { get; set; }
 		public bool Status { get; set; }
 		public string CreateAt { get; set; }
-		public string Update_Date { get; set; }
+		public string UpdateDate { get; set; }
 		public string DeleteAt { get; set; }
 		}
 	}

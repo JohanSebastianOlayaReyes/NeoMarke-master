@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 	public class FormModule
 	{
 		public int Id { get; set; }
-		public bool Status_Procedure { get; set; }
+		public bool StatusProcedure { get; set; }
 
     }
 }

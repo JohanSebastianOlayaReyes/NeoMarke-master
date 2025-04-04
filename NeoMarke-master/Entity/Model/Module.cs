@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 	{
 		public int Id { get; set; }
 		public bool Active { get; set; }
-		public string Create_Date { get; set; }
-		public string Update_Date { get; set; }
-		public string Delete_Date { get; set; }
+		public string CreateDate { get; set; }
+		public string UpdateDate { get; set; }
+		public string DeleteDate { get; set; }
 		public int ForModuleId {get; set; }
 		public required ForModule ForModule { get; set; }
 	}

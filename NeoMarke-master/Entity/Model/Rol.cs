@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 	public class Rol
 	{
 		public int Id { get; set; }
-		public string Name_Rol { get; set; } = string.Empty;
+		public string NameRol { get; set; } = string.Empty;
 		public string Description { get; set; }
 		public bool Status { get; set; }
 		public int RolFormId { get; set; }
 		public required RolForm RolForm { get; set; }
-		public int Id_User { get; set; }
+		public int IdUser { get; set; }
 		public required User User { get; set; }
 	}
 }
