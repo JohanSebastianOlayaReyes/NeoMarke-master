@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity.DTOs
 {
-    class RolFormDTO
+    public class RolFormDTO
     {
         public string Permission { get; set; }
     }
