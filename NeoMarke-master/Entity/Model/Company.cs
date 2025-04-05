@@ -20,9 +20,9 @@ using System.Threading.Tasks;
 		public string EmailCompany { get; set; } = string.Empty;
 		public string NitCompany { get; set; }
 		public bool Status { get; set; }
-        public int IdUser { get; set; }
-        public required User User { get; set; } 
-        public int IdSede { get; set; }
-        public required Sede Sede { get; set; } 
+       // public int IdUser { get; set; }
+       // public required User User { get; set; } 
+       // public int IdSede { get; set; }
+      //  public required Sede Sede { get; set; }
     }
 }

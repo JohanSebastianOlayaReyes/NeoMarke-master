@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 		public string NameRol { get; set; } = string.Empty;
 		public string Description { get; set; }
 		public bool Status { get; set; }
-		public int RolFormId { get; set; }
-		public required RolForm RolForm { get; set; }
-		public int IdUser { get; set; }
-		public required User User { get; set; }
+		//public int RolFormId { get; set; }
+		//public required RolForm RolForm { get; set; }
+		//public int IdUser { get; set; }
+		//public required User User { get; set; }
 	}
 }

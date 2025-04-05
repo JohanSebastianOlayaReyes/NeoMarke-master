@@ -15,5 +15,6 @@ using System.Threading.Tasks;
 		public string CreateAt { get; set; }
 		public string UpdateDate { get; set; }
 		public string DeleteAt { get; set; }
-		}
+        public object Title { get; set; }
+    }
 	}

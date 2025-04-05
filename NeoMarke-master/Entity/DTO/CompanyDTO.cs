@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity.DTOs
 {
-    class CompanyDTO
+    public class CompanyDto
     {
         public string Description { get; set; } = string.Empty;
         public string NameCompany { get; set; } = string.Empty;
@@ -15,5 +15,6 @@ namespace Entity.DTOs
         public string EmailCompany { get; set; } = string.Empty;
         public string NitCompany { get; set; } = string.Empty;
         public bool Status { get; set; }
+        public int Id { get; set; }
     }
 }

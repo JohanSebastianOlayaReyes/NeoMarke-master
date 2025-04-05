@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.DTOs
+namespace Entity.DTO
 {
-    class InventoryDTO
+    public  class InventoryDTO
     {
         public bool StatusPrevious { get; set; }
         public bool StatusNew { get; set; }
