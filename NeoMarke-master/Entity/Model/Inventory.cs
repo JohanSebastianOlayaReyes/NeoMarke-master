@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 {
         public class Inventory
         {
-            public int Id { get; set; } 
+        public readonly string ProductName;
+
+        public int Id { get; set; } 
             public string StatusPrevious { get; set; } = string.Empty;
             public string StatusNew { get; set; } = string.Empty;
             public string Observations { get; set; } = string.Empty;

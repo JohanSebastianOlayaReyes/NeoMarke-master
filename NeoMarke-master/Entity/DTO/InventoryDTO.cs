@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Entity.DTO
 {
-    public  class InventoryDTO
+    public  class InventoryDto
     {
-        public bool StatusPrevious { get; set; }
-        public bool StatusNew { get; set; }
+        public string ProductName { get; set; } = string.Empty;
+        public string StatusPrevious { get; set; }
+        public string StatusNew { get; set; }
         public string Observations { get; set; } = string.Empty;
 
         public string ZoneItem {  get; set; }
-
+        public int Id { get; set; }
     }
 }

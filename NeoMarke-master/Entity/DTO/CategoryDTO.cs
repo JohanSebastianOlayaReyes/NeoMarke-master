@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.DTOs
+namespace Entity.DTO
 {
-    class CategoryDTO
+    public class CategoryDto
     {
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; }
+        public int Id { get; set; }
     }
 }

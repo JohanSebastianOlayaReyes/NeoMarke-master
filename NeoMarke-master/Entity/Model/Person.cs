@@ -18,5 +18,8 @@ using System.Threading.Tasks;
         public bool Status { get; set; }
         public int IdUser { get; set; }
         public required User User { get; set; }
+        public int PhoneNumber { get; set; }
+        public string TypeIndification { get; set; }
+        public int NumberIndification { get; set; }
     }
 	}

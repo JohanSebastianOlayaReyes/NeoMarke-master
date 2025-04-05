@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.DTOs
+namespace Entity.DTO
 {
-    class UserDTO
+    public class UserDto
     {
-        public string Username { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string UserName { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public bool Status { get; set; }
     }

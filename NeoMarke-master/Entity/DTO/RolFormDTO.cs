@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.DTOs
+namespace Entity.DTO
 {
-    public class RolFormDTO
+    public class RolFormDto
+
     {
         public string Permission { get; set; }
     }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.DTOs
+namespace Entity.DTO
 {
-    class PersonDTO
+    public class PersonDto
     {
+        public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public int PhoneNumber { get; set; }

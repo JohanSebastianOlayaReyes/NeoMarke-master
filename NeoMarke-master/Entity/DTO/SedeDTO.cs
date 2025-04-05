@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.DTOs
+namespace Entity.DTO
 {
-    class SedeDTO
+     public class SedeDto
     {
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string CodeSede { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
